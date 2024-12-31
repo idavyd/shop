@@ -3,66 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Welcome</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
+    <title>Product List</title>
+    <script>
+        // Fetch products data on page load
+        window.onload = function() {
+            fetch('/api/products/')
+                .then(response => response.json())
+                .then(data => {
+                    const productList = document.getElementById('product-list');
+                    data.forEach(product => {
+                        const productElement = document.createElement('div');
+                        productElement.innerHTML = `<h3>${product.name}</h3><p>${product.description}</p><p>Price: $${product.price}</p>`;
+                        productList.appendChild(productElement);
+                    });
+                });
         }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
-        }
-        nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-        }
-        nav a:hover {
-            background-color: #575757;
-        }
-        .container {
-            padding: 20px;
-            text-align: center;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <header>
-        <h1>Welcome, {{ user }}</h1>
-        <p>You are successfully logged in.</p>
-    </header>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Profile</a>
-        <a href="#">Orders</a>
-        <a href="#">Logout</a>
-    </nav>
-    <div class="container">
-        <h2>Dashboard</h2>
-        <p>Explore your profile, manage your orders, and more.</p>
+    <h1>Welcome to Our Store</h1>
+    <div id="product-list">
+        <!-- Products will be populated here -->
     </div>
-    <footer>
-        &copy; 2024 My E-Commerce Site
-    </footer>
 </body>
 </html>
