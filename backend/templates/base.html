@@ -1,21 +1,20 @@
-{% include 'navbar.html' %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Django Server</title>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
+    <title>E-com</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+</head>
+<body>
+{% include 'navbar.html' %}
+{% block content %}
+{% endblock %}
 
-    </head>
-    <body>
-        <
-
-        {% block content %}
-        {% endblock %}
-
-    </body>
+</body>
 </html>
