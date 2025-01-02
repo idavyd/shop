@@ -28,6 +28,7 @@ class Category(models.Model):
     slug = models.SlugField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    icon = models.ImageField(upload_to='category_image/', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -44,7 +45,7 @@ class Product(models.Model):
     is_on_sale = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='product_images')
 
     def __str__(self):
         return f'{self.name}'

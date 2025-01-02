@@ -28,13 +28,8 @@ class CustomUserAdmin(UserAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price', 'author', 'created_at', 'updated_at')
-    readonly_fields = ('created_at', 'updated_at', 'author')
-
-    def save_model(self, request, obj, form, change):
-        if not obj.author:
-            obj.author = request.user.username
-        obj.save()
+    list_display = ('name', 'category', 'price', 'created_at', 'updated_at')
+    readonly_fields = ('created_at', 'updated_at')
 
 
 admin.site.unregister(Group)

@@ -4,8 +4,13 @@ from .forms import LoginForm
 import requests
 from rest_framework.status import HTTP_200_OK
 
+
 def dummy_home_view(request):
-    return render(request, 'home.html', {'user': request.user.username})
+    if request.method == 'GET':
+        get_prods = requests.get(url='http://127.0.0.1:8000/api/list_prods/')
+        get_categories = requests.get(url='http://127.0.0.1:8000/api/list_categories/')
+        return render(request, 'home.html', {'products': get_prods.json(),
+                                             'categories': get_categories.json()})
 
 
 def login_view(request):
@@ -27,4 +32,3 @@ def login_view(request):
             else:
                 request.session['auth_token'] = response.json().get('access_token')
                 return redirect('home')
-
