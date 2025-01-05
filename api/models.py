@@ -29,12 +29,19 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     icon = models.ImageField(upload_to='category_image/', blank=True, null=True)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE,
+                               related_name='subcategories',
+                               blank=True,
+                               null=True)
 
     class Meta:
         verbose_name_plural = 'Categories'
 
     def __str__(self):
         return f'{self.name}'
+
+    def is_root_category(self):
+        return self.parent is None
 
 
 class Product(models.Model):
